@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "312108519586",
+    "project_id": "connekta-flutter-app",
+    "storage_bucket": "connekta-flutter-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312108519586:android:4ce3fc1645b8d3ece0c7fb",
+        "android_client_info": {
+          "package_name": "com.example.connekta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6PJRNR_hUlF4r5Vp8cHMG_lSN2SZh6J4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

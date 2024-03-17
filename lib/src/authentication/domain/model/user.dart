@@ -8,11 +8,14 @@ class UserModel extends Equatable {
   final String email;
   final String displayName;
   final String profileUrl;
+  final bool isVerified;
   const UserModel({
     required this.uid,
     required this.email,
     required this.displayName,
     required this.profileUrl,
+    this.isVerified = false,
+
   });
 
   factory UserModel.fromFirebase(UserCredential firebaseUser) {
@@ -30,6 +33,7 @@ class UserModel extends Equatable {
       email: data['email'],
       displayName: data['displayName'],
       profileUrl: data['profileUrl'],
+      isVerified: data['isVerified']
     );
   }
   Map<String, dynamic> toDocument() {
@@ -38,6 +42,7 @@ class UserModel extends Equatable {
       "email": email,
       "displayName": displayName,
       "profileUrl": profileUrl,
+       "isVerified": isVerified
     };
   }
 

@@ -14,16 +14,20 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<AppStartedEvent>((event, emit) async {
         if(await authenticationRepository.isSignIn()){
            final uid = await authenticationRepository.getCurrentUuid();
-           emit(AuthenticatedState(uid: uid));
+           final user = await authenticationRepository.getCurrentUser();
+           emit(AuthenticatedState(uid: uid, isEmailVerified: user!.emailVerified, email: user.email));
         }else{
-          emit(UnAuthenticatedState());
+           emit(UnAuthenticatedState());
         }
     });
+
     on<LoggedInEvent>((event, emit) async {
       String uid = await authenticationRepository.getCurrentUuid();
+      final user = await authenticationRepository.getCurrentUser();
       emit(AuthenticatedState(uid: uid));
     });
-    on<LoggedOutEvent>((event, emit) {
+    on<LoggedOutEvent>((event, emit) async {
+      await authenticationRepository.signOut();
       emit(UnAuthenticatedState());
     });
   }

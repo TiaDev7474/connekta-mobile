@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class SignUpForm extends StatefulWidget {
-  const SignUpForm({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
   @override
-  State<SignUpForm> createState() => _SignUpFormState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
+class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   String _password = '';
   String _email = '';
@@ -23,7 +23,7 @@ class _SignUpFormState extends State<SignUpForm> {
       _formKey.currentState!.save(); // Save the form data
       print('Password: $_password'); // Print the password
       print('Email: $_email');
-      context.read<CredentialBloc>().add(SignUpSubmitEvent(
+      context.read<CredentialBloc>().add(SignInSubmitEvent(
           email: _email, password: _password)); // Print the email
     }
   }
@@ -99,12 +99,12 @@ class _SignUpFormState extends State<SignUpForm> {
                       return const CircularProgressIndicator();
                     }
                     if (state is CredentialSuccess) {
-                      return const Text("Signed up");
+                      return const Text("Login");
                     }
                     if (state is CredentialFailure) {
                       return const Text("Failed");
                     }
-                    return const Text("Sign up");
+                    return const Text("Logged in");
                   },
                   listener: (BuildContext context, CredentialState state) {
                     if (state is CredentialSuccess) {

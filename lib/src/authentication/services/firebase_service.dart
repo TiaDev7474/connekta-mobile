@@ -14,6 +14,8 @@ abstract class FirebaseService {
   Future<void> sendVerificationEmail();
   Future<void> forgotPassword(String email);
   Future<void> signOut();
+  Future<User?>  getCurrentUser();
+  Future<void> updateIsEmailVerified();
 }
 
 class FirebaseServiceImpl implements FirebaseService {
@@ -89,6 +91,7 @@ class FirebaseServiceImpl implements FirebaseService {
         UserCredential credential = await firebaseAuth
             .createUserWithEmailAndPassword(email: email, password: password);
         await storeCurrentUser(UserModel.fromFirebase(credential));
+        await sendVerificationEmail();
      }on FirebaseAuthException {
         throw ServerException();
      }
@@ -109,5 +112,18 @@ class FirebaseServiceImpl implements FirebaseService {
         userCollectionRef.doc(uid).set(newUser);
       }
     });
+  }
+
+  @override
+  Future<User?> getCurrentUser() async {
+     return  firebaseAuth.currentUser;
+  }
+
+  @override
+  Future<void> updateIsEmailVerified() async {
+    // TODO: implement updateIsEmailVerified
+     final userCollectionRef = firestore.collection("users");
+     final uid = await getCurrentUuid();
+     userCollectionRef.doc(uid).update({"isVerified": true});
   }
 }

@@ -20,3 +20,6 @@ class ForgotPasswordEvent extends CredentialEvent {
   final String email;
   ForgotPasswordEvent({required this.email});
 }
+class SentVerificationEmailEvent extends CredentialEvent {}
+class VerificationRequestedEvent extends CredentialEvent {}
+class VerificationStreamRequestedEvent extends CredentialEvent {}

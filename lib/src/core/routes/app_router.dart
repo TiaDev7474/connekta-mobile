@@ -28,9 +28,14 @@ abstract class AppRouter {
         ),
         GoRoute(
             path: PathName.verificationPath,
-            builder: (context, state) => const VerificationPage()
+            builder: (context, state) {
+              final email = state.uri.queryParameters['email']!;
+              return VerificationPage(userEmail: email);
+          }
         ),
 
       ]
   );
+
+
 }

@@ -3,6 +3,7 @@
 
 import 'package:connekta/src/authentication/domain/model/user.dart';
 import 'package:connekta/src/authentication/services/firebase_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthenticationRepository {
   Future<String> getCurrentUuid();
@@ -15,6 +16,8 @@ abstract class AuthenticationRepository {
   Future<void> sendVerificationEmail();
   Future<void> forgotPassword(String email);
   Future<void> signOut();
+  Future<User?> getCurrentUser();
+  Future<void> updateIsEmailVerified();
 }
 
 
@@ -69,6 +72,18 @@ class AuthenticationImpl implements AuthenticationRepository {
   @override
   Future<void> storeCurrentUser(UserModel user) {
     return firebaseService.storeCurrentUser(user);
+  }
+
+  @override
+  Future<User?> getCurrentUser() {
+    // TODO: implement getCurrentUser
+    return firebaseService.getCurrentUser();
+  }
+
+  @override
+  Future<void> updateIsEmailVerified() {
+    // TODO: implement updateIsEmailVerified
+    return firebaseService.updateIsEmailVerified();
   }
   
 }

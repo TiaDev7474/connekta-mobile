@@ -2,6 +2,7 @@ import 'package:connekta/src/authentication/presentation/ui/widgets/signup_form.
 import 'package:connekta/src/core/common/constants/path_name.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -12,23 +13,32 @@ class SignUpPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
                 height: 50,
               ),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Connekta.",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .copyWith(
+                          titleLarge: const TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                        .titleLarge,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8.0,
                   ),
                   Text(
                     "Please fill up the form to create an account",
-                    style: TextStyle(fontSize: 18, color: Colors.black54),
+                    style: Theme.of(context).textTheme.titleMedium,
                   )
                 ],
               ),
@@ -38,27 +48,25 @@ class SignUpPage extends StatelessWidget {
               const SignUpForm(),
               Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.center,
-                       mainAxisAlignment: MainAxisAlignment.end,
-                       children: [
-                           Row(
-                             mainAxisAlignment: MainAxisAlignment.center,
-                             children: [
-                               const Text("Already have an account ?"),
-                               TextButton(
-                                   onPressed:(){
-                                     context.pushReplacement(PathName.loginPath);
-                                   },
-                                   child: const Text("Login")
-                               )
-                             ],
-                           )
-                       ],
-                    ),
-                  )
-              )
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("Already have an account ?"),
+                        TextButton(
+                            onPressed: () {
+                              context.pushReplacement(PathName.loginPath);
+                            },
+                            child: const Text("Login"))
+                      ],
+                    )
+                  ],
+                ),
+              ))
             ],
           ),
         ),

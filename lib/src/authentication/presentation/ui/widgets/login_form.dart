@@ -50,13 +50,12 @@ class _LoginFormState extends State<LoginForm> {
               onSaved: (value) {
                 _email = value!;
               },
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(),
-                  hintText: "Enter your email address here",
-                  hintStyle: TextStyle(
-                    fontWeight: FontWeight.w300,
-                  )),
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.email),
+                border: const OutlineInputBorder(),
+                hintText: "Enter your email address here",
+                hintStyle: Theme.of(context).inputDecorationTheme.hintStyle,
+              ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
@@ -78,7 +77,7 @@ class _LoginFormState extends State<LoginForm> {
                           : const Icon(Icons.visibility_off)),
                   border: const OutlineInputBorder(),
                   hintText: "Enter your password here",
-                  hintStyle: const TextStyle(fontWeight: FontWeight.w300)),
+                  hintStyle: Theme.of(context).inputDecorationTheme.hintStyle),
               obscureText: !isVisible,
             ),
             const SizedBox(height: 16.0),
@@ -86,7 +85,7 @@ class _LoginFormState extends State<LoginForm> {
                 onPressed: _submitForm, // Text on the button
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: Colors.black87,
+                  backgroundColor: Theme.of(context).primaryColor,
                   elevation: 8.0,
                   minimumSize: const Size.fromHeight(50),
                   shape: const BeveledRectangleBorder(
@@ -99,19 +98,17 @@ class _LoginFormState extends State<LoginForm> {
                       return const CircularProgressIndicator();
                     }
                     if (state is CredentialSuccess) {
-                      return const Text("Login");
+                      return const Text("Logged in");
                     }
-                    if (state is CredentialFailure) {
-                      return const Text("Failed");
-                    }
-                    return const Text("Logged in");
+                    return const Text("Login");
                   },
                   listener: (BuildContext context, CredentialState state) {
                     if (state is CredentialSuccess) {
                       context.go(PathName.discussionsPath);
                     }
                   },
-                ))
+                ),
+            )
           ],
         ));
   }

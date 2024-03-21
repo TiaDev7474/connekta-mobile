@@ -18,6 +18,7 @@ abstract class AuthenticationRepository {
   Future<void> signOut();
   Future<User?> getCurrentUser();
   Future<void> updateIsEmailVerified();
+  Future<void> updateUserProfile();
 }
 
 
@@ -85,5 +86,10 @@ class AuthenticationImpl implements AuthenticationRepository {
     // TODO: implement updateIsEmailVerified
     return firebaseService.updateIsEmailVerified();
   }
-  
+
+  @override
+  Future<void> updateUserProfile() {
+    // TODO: implement updateUserProfile
+    throw UnimplementedError();
+  }
 }

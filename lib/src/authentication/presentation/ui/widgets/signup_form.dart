@@ -50,13 +50,11 @@ class _SignUpFormState extends State<SignUpForm> {
               onSaved: (value) {
                 _email = value!;
               },
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.email),
+                  border: const OutlineInputBorder(),
                   hintText: "Enter your email address here",
-                  hintStyle: TextStyle(
-                    fontWeight: FontWeight.w300,
-                  )),
+                  hintStyle: Theme.of(context).inputDecorationTheme.hintStyle),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
@@ -78,7 +76,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           : const Icon(Icons.visibility_off)),
                   border: const OutlineInputBorder(),
                   hintText: "Enter your password here",
-                  hintStyle: const TextStyle(fontWeight: FontWeight.w300)),
+                  hintStyle: Theme.of(context).inputDecorationTheme.hintStyle),
               obscureText: !isVisible,
             ),
             const SizedBox(height: 16.0),
@@ -86,7 +84,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 onPressed: _submitForm, // Text on the button
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: Colors.black87,
+                  backgroundColor: Theme.of(context).primaryColor,
                   elevation: 8.0,
                   minimumSize: const Size.fromHeight(50),
                   shape: const BeveledRectangleBorder(

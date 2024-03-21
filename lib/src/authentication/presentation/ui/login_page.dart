@@ -12,23 +12,32 @@ class LoginPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
                 height: 50,
               ),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Login to Connekta.",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .copyWith(
+                          titleLarge: const TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                        .titleLarge,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8.0,
                   ),
                   Text(
                     "Welcome again,please log in to continue",
-                    style: TextStyle(fontSize: 18, color: Colors.black54),
+                    style: Theme.of(context).textTheme.titleMedium,
                   )
                 ],
               ),
@@ -38,27 +47,25 @@ class LoginPage extends StatelessWidget {
               const LoginForm(),
               Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Don't have an account ?"),
-                            TextButton(
-                                onPressed:(){
-                                  context.pushReplacement(PathName.signUpPath);
-                                },
-                                child: const Text("Sign up")
-                            )
-                          ],
-                        )
+                        const Text("Don't have an account ?"),
+                        TextButton(
+                            onPressed: () {
+                              context.pushReplacement(PathName.signUpPath);
+                            },
+                            child: const Text("Sign up"))
                       ],
-                    ),
-                  )
-              )
+                    )
+                  ],
+                ),
+              ))
             ],
           ),
         ),

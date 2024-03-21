@@ -9,6 +9,8 @@ class AuthenticatedState extends AuthenticationState {
   final String uid;
   final bool isEmailVerified;
   final String? email;
-  AuthenticatedState({required this.uid , this.isEmailVerified = false, this.email});
+  final bool isProfileFilled;
+  AuthenticatedState({required this.uid , this.isEmailVerified = false, this.email, this.isProfileFilled= false});
+
 }
 class UnAuthenticatedState extends AuthenticationState {}

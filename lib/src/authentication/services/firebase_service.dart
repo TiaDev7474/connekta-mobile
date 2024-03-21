@@ -16,6 +16,7 @@ abstract class FirebaseService {
   Future<void> signOut();
   Future<User?>  getCurrentUser();
   Future<void> updateIsEmailVerified();
+  Future<void> updateUserProfile(User user);
 }
 
 class FirebaseServiceImpl implements FirebaseService {
@@ -126,4 +127,27 @@ class FirebaseServiceImpl implements FirebaseService {
      final uid = await getCurrentUuid();
      userCollectionRef.doc(uid).update({"isVerified": true});
   }
+
+  @override
+  Future<void> updateUserProfile(User user) async {
+    // TODO: implement updateUserProfile
+    final userCollectionRef = firestore.collection("users");
+    final DocumentSnapshot doc = await userCollectionRef.doc(user.uid).get();
+    final Map<String, dynamic> updateData = {};
+    final firebaseUser = await getCurrentUser();
+    if(user.email!.isNotEmpty){
+       updateData['email'] = user.email;
+       await firebaseUser?.updateEmail(user.email!);
+
+    }
+    if(user.displayName!.isNotEmpty){
+      updateData['displayName'] = user.displayName;
+    }
+    if(doc.exists){
+
+    }
+    throw UnimplementedError();
+  }
+
 }
+

@@ -9,10 +9,11 @@ part 'credential_state.dart';
 
 class CredentialBloc extends Bloc<CredentialEvent, CredentialState> {
   final AuthenticationRepository authenticationRepository;
-  late Timer timer;
+  Timer? timer;
   CredentialBloc({required this.authenticationRepository}) : super(CredentialInitial()) {
     on<CredentialEvent>((event, emit) {
       // TODO: implement event handler
+      emit(CredentialInitial());
     });
     on<SignUpSubmitEvent>((event, emit) async {
        try{
@@ -35,7 +36,6 @@ class CredentialBloc extends Bloc<CredentialEvent, CredentialState> {
       }
     });
     on<VerificationRequestedEvent>((event, emit) async {
-
       try{
         emit(CredentialLoading());
         final user = await authenticationRepository.getCurrentUser();
@@ -61,11 +61,20 @@ class CredentialBloc extends Bloc<CredentialEvent, CredentialState> {
         emit(CredentialFailure());
       }
     });
+    on<SignOutSubmitEvent>((event, emit) async {
+        try{
+          emit(CredentialLoading());
+          await authenticationRepository.signOut();
+          emit(CredentialSuccess());
+        }catch (e){
+          emit(CredentialFailure());
+        }
+    });
   }
   @override
   Future<void> close() {
     // TODO: implement close
-    timer.cancel();
+    timer?.cancel();
     print("wait verification email timer is canceled");
     return super.close();
   }

@@ -1,5 +1,6 @@
 import 'package:connekta/src/authentication/presentation/ui/forgot_password_page.dart';
 import 'package:connekta/src/authentication/presentation/ui/login_page.dart';
+import 'package:connekta/src/authentication/presentation/ui/profile_init_page.dart';
 import 'package:connekta/src/authentication/presentation/ui/signup_page.dart';
 import 'package:connekta/src/authentication/presentation/ui/verification_page.dart';
 import 'package:connekta/src/core/common/constants/path_name.dart';
@@ -33,6 +34,12 @@ abstract class AppRouter {
               return VerificationPage(userEmail: email);
           }
         ),
+        GoRoute(
+            path: PathName.profileInitPath,
+            builder: ((context, state){
+               return const ProfileInitPage();
+            })
+        )
 
       ]
   );

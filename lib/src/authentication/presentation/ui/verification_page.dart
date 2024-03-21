@@ -16,7 +16,6 @@ class _VerificationPageState extends State<VerificationPage> {
     // TODO: implement initState
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,35 +24,45 @@ class _VerificationPageState extends State<VerificationPage> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              const SizedBox(
-                height: 50,
-              ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Email verification ",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
                   const SizedBox(
-                    height: 8.0,
+                    height: 50,
                   ),
-                  RichText(
-                    text: TextSpan(
-                      style: const TextStyle(fontSize: 22, color: Colors.black54),
-                      children: <TextSpan>[
-                        const TextSpan(text:
-                        "We sent you a verification code to "),
-                        TextSpan(
-                          text: widget.userEmail,
-                          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                       Text(
+                        "Email verification ",
+                           style: Theme.of(context)
+                               .textTheme
+                               .copyWith(
+                             titleLarge: const TextStyle(
+                               fontSize: 32,
+                               fontWeight: FontWeight.bold,
+                             ),
+                           )
+                               .titleLarge,
+                      ),
+                      const SizedBox(
+                        height: 8.0,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: Theme.of(context).textTheme.headlineSmall,
+                          children: <TextSpan>[
+                            const TextSpan(text:
+                            "We sent you a verification code to "),
+                            TextSpan(
+                              text: widget.userEmail,
+                              style: const TextStyle(color: Colors.blueAccent),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    height: 18.0,
-                  ),
+                  const SizedBox(height: 8.0,),
                   const VerificationForm()
 
                 ],

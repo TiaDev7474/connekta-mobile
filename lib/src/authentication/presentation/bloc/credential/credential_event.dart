@@ -13,7 +13,6 @@ class SignInSubmitEvent extends CredentialEvent{
   final String password;
   SignInSubmitEvent({required this.email, required this.password});
 }
-
 class SignOutSubmitEvent extends CredentialEvent{}
 
 class ForgotPasswordEvent extends CredentialEvent {
